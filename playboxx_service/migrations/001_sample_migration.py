@@ -7,7 +7,7 @@ steps = [
             first_name VARCHAR(100) NOT NULL,
             last_name VARCHAR(100) NOT NULL,
             username VARCHAR(100) NOT NULL UNIQUE,
-            password VARCHAR(100) NOT NULL,
+            hashed_password VARCHAR(100) NOT NULL,
             email VARCHAR(255) UNIQUE CHECK (email ~* '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
             profile_picture TEXT NOT NULL
         );
