@@ -1,6 +1,10 @@
 from pydantic import BaseModel
+from typing import List
 from queries.pool import pool
 
+
+class Error(BaseModel):
+    message: str
 
 class GameIn(BaseModel):
     name: str
@@ -37,3 +41,26 @@ class GameRepository:
                 return GameOut(
                     id=id, **old_data
                 )
+
+    def get_all_games(self) -> List[GameOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT id, name, description, picture_url
+                        FROM games;
+                        """
+                    )
+                    return [
+                        GameOut(
+                            id=record[0],
+                            name=record[1],
+                            description=record[2],
+                            picture_url=record[3],
+                        )
+                        for record in db
+                    ]
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get all games"}
