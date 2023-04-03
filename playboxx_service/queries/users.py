@@ -39,7 +39,7 @@ class UserOutWithPassword(UserOut):
 
 
 class UserRepository:
-    def create(
+    def create_user(
         self, users: UserIn, hashed_password: str
     ) -> UserOutWithPassword:
         with pool.connection() as conn:
@@ -68,7 +68,7 @@ class UserRepository:
                     id=id, **old_data, hashed_password=hashed_password
                 )
 
-    def get(self, username: str) -> UserOutWithPassword:
+    def get_user(self, username: str) -> UserOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
