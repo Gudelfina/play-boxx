@@ -15,6 +15,7 @@ class UserIn(BaseModel):
     email: str
     profile_picture: str
 
+
 class UserUpdate(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
@@ -80,9 +81,12 @@ class UserRepository:
                             email,
                             profile_picture
                     FROM users
-                    WHERE username = %s;
+                    WHERE username = %s
+                    or email = %s;
                     """,
-                    [username]
+                    [username,
+                     username,
+                    ],
                 )
                 user = result.fetchone()
                 if user is None:
@@ -94,7 +98,7 @@ class UserRepository:
                     username=user[3],
                     hashed_password=user[4],
                     email=user[5],
-                    profile_picture=user[6]
+                    profile_picture=user[6],
                 )
 
     def delete_user(self, id: int):
@@ -108,7 +112,9 @@ class UserRepository:
                     [id],
                 )
 
-    def update_user(self, id: int, users: UserUpdate, hashed_password: str) -> UserOutWithPassword:
+    def update_user(
+        self, id: int, users: UserUpdate, hashed_password: str
+    ) -> UserOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 params = [
@@ -118,7 +124,7 @@ class UserRepository:
                     hashed_password,
                     users.email,
                     users.profile_picture,
-                    id
+                    id,
                 ]
                 db.execute(
                     """
@@ -131,7 +137,9 @@ class UserRepository:
                         profile_picture = %s
                     WHERE id = %s
                     """,
-                    params
+                    params,
                 )
                 old_data = users.dict()
-                return UserOutWithPassword(id=id, **old_data, hashed_password=hashed_password)
+                return UserOutWithPassword(
+                    id=id, **old_data, hashed_password=hashed_password
+                )

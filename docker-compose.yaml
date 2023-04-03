@@ -7,7 +7,7 @@ services:
       context: ./playboxx_service
       dockerfile: ./Dockerfile.dev
     environment:
-      SIGNING_KEY: RfUjXn2r5u8xADGKbPeShVkYp3s6aNdRgUkXp2s5v8yBEGKbPeShVmYq
+      SIGNING_KEY: PLAYBOXX_KEY
       DATABASE_URL: postgresql://example_user:secret@db/db
       WAIT_HOSTS: db:5432
       PORT: 8000

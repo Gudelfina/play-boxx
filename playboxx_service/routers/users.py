@@ -22,9 +22,11 @@ from queries.users import (
     UserUpdate,
 )
 
+
 class UserForm(BaseModel):
     username: str
     password: str
+
 
 class UserToken(Token):
     user: UserOut
@@ -33,10 +35,13 @@ class UserToken(Token):
 class HttpError(BaseModel):
     detail: str
 
+
 @router.get("/token", response_model=UserToken | None)
 async def get_token(
     request: Request,
-    user: UserOutWithPassword = Depends(authenticator.try_get_current_account_data)
+    user: UserOutWithPassword = Depends(
+        authenticator.try_get_current_account_data
+    ),
 ) -> UserToken | None:
     if user and authenticator.cookie_name in request.cookies:
         return {
@@ -44,6 +49,7 @@ async def get_token(
             "type": "Bearer",
             "user": user,
         }
+
 
 @router.post("/api/users", response_model=UserToken | HttpError)
 async def create_user(
@@ -65,13 +71,17 @@ async def create_user(
     token = await authenticator.login(response, request, form, users)
     return UserToken(user=user, **token.dict())
 
+
 @router.delete("/api/users/{id}", response_model=bool)
 def delete_user(id: int, queries: UserRepository = Depends()):
     queries.delete_user(id)
     return True
 
+
 @router.put("/api/users/{id}", response_model=UserOut)
-def update_user(id: int, user:UserUpdate, queries: UserRepository = Depends()):
+def update_user(
+    id: int, user: UserUpdate, queries: UserRepository = Depends()
+):
     hashed_password = authenticator.hash_password(user.password)
     record = queries.update_user(id, user, hashed_password)
     return record

@@ -33,6 +33,7 @@ class UserAuthenticator(Authenticator):
         # You must return TWO values from this method.
         return user.username, UserOut(**user.dict())
 
+
 two_hours = timedelta(hours=2)
 
 authenticator = UserAuthenticator(
