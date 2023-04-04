@@ -1,12 +1,10 @@
 from pydantic import BaseModel
-from typing import List, Union
+from typing import List, Union, Optional
 from queries.pool import pool
 
 
 class Error(BaseModel):
     message: str
-
-from queries.pool import pool
 
 
 class GameIn(BaseModel):
@@ -14,36 +12,41 @@ class GameIn(BaseModel):
     description: str
     picture_url: str
 
+
 class GameOut(BaseModel):
     id: str
     name: str
     description: str
     picture_url: str
 
+
 class GameRepository:
     def create_game(self, games: GameIn) -> Union[Error, GameOut]:
-        with pool.connection() as conn:
-            with conn.cursor() as db:
-                params = [
-                    games.name,
-                    games.description,
-                    games.picture_url,
-                ]
-                result = db.execute(
-                    """
-                    INSERT INTO games
-                        (name, description, picture_url)
-                    VALUES
-                        (%s, %s, %s)
-                    RETURNING id;
-                    """,
-                    params,
-                )
-                id = result.fetchone()[0]
-                old_data = games.dict()
-                return GameOut(
-                    id=id, **old_data
-                )
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    params = [
+                        games.name,
+                        games.description,
+                        games.picture_url,
+                    ]
+                    result = db.execute(
+                        """
+                        INSERT INTO games
+                            (name, description, picture_url)
+                        VALUES
+                            (%s, %s, %s)
+                        RETURNING id;
+                        """,
+                        params,
+                    )
+                    id = result.fetchone()[0]
+                    old_data = games.dict()
+                    return GameOut(
+                        id=id, **old_data
+                    )
+        except Exception:
+            return {"message": "Could not create game"}
 
     def get_all_games(self) -> Union[Error, List[GameOut]]:
         try:
@@ -51,7 +54,10 @@ class GameRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT id, name, description, picture_url
+                        SELECT id
+                             , name
+                             , description
+                             , picture_url
                         FROM games;
                         """
                     )
@@ -109,3 +115,31 @@ class GameRepository:
         except Exception as e:
             print(e)
             return {"message": "could not delete game"}
+
+    def get_one_game(self, game_id: int) -> Optional[GameOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                                , name
+                                , description
+                                , picture_url
+                        FROM games
+                        WHERE id = %s
+                        """,
+                        [game_id]
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return GameOut(
+                        id=record[0],
+                        name=record[1],
+                        description=record[2],
+                        picture_url=record[3],
+                    )
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get that game"}
