@@ -61,7 +61,7 @@ async def create_user(
     hashed_password = authenticator.hash_password(info.password)
 
     try:
-        user = users.create(info, hashed_password)
+        user = users.create_user(info, hashed_password)
     except DuplicateUserError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

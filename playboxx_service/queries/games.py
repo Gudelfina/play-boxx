@@ -1,10 +1,13 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Union
 from queries.pool import pool
 
 
 class Error(BaseModel):
     message: str
+
+from queries.pool import pool
+
 
 class GameIn(BaseModel):
     name: str
@@ -18,7 +21,7 @@ class GameOut(BaseModel):
     picture_url: str
 
 class GameRepository:
-    def create_game(self, games: GameIn) -> GameOut:
+    def create_game(self, games: GameIn) -> Union[Error, GameOut]:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 params = [
@@ -42,7 +45,7 @@ class GameRepository:
                     id=id, **old_data
                 )
 
-    def get_all_games(self) -> List[GameOut]:
+    def get_all_games(self) -> Union[Error, List[GameOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -64,3 +67,29 @@ class GameRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all games"}
+
+    def update_game(self, game_id: int, game: GameIn) -> Union[GameOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    params = [
+                        game.name,
+                        game.description,
+                        game.picture_url,
+                        game_id,
+                    ]
+                    db.execute(
+                        """
+                        UPDATE games
+                        SET name = %s
+                            , description = %s
+                            , picture_url = %s
+                        WHERE id = %s;
+                        """,
+                        params,
+                    )
+                    old_data = game.dict()
+                    return GameOut(id=game_id, **old_data)
+        except Exception as e:
+            print(e)
+            return {"message": "could not update game"}
