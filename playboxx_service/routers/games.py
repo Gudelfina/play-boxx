@@ -38,6 +38,7 @@ def delete_game(
 ) -> bool:
     return repo.delete_game(game_id)
 
+
 @router.get("/games/{game_id}", response_model=Optional[GameOut])
 def get_one_game(
     game_id: int,
