@@ -93,3 +93,19 @@ class GameRepository:
         except Exception as e:
             print(e)
             return {"message": "could not update game"}
+
+    def delete_game(self, game_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM games
+                        WHERE id = %s
+                        """,
+                        [game_id]
+                    )
+                    return True
+        except Exception as e:
+            print(e)
+            return {"message": "could not delete game"}

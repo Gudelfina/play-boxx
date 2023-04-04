@@ -29,3 +29,10 @@ def update_game(
     repo: GameRepository = Depends(),
 ):
     return repo.update_game(game_id, game)
+
+@router.delete("/games/{game_id}", response_model=bool)
+def delete_game(
+    game_id: int,
+    repo: GameRepository = Depends(),
+) -> bool:
+    return repo.delete_game(game_id)
