@@ -16,7 +16,7 @@ def create_game(game: GameIn, repo: GameRepository = Depends()):
 
 
 @router.get("/games", response_model=Union[List[GameOut], Error])
-def get_all(
+def get_all_games(
     repo: GameRepository = Depends(),
 ):
     return repo.get_all_games()
