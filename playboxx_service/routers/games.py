@@ -5,13 +5,14 @@ from fastapi import (
     )
 from queries.games import GameIn, GameOut, GameRepository, Error
 from typing import List, Union, Optional
+from authenticator import authenticator
 
 
 router = APIRouter()
 
 
 @router.post("/games", response_model=GameOut)
-def create_game(game: GameIn, repo: GameRepository = Depends()):
+def create_game(game: GameIn, repo: GameRepository = Depends(authenticator.get_current_account_data)):
     return repo.create_game(game)
 
 
@@ -26,7 +27,7 @@ def get_all_games(
 def update_game(
     game_id: int,
     game: GameIn,
-    repo: GameRepository = Depends(),
+    repo: GameRepository = Depends(authenticator.get_current_account_data),
 ):
     return repo.update_game(game_id, game)
 
@@ -34,7 +35,7 @@ def update_game(
 @router.delete("/games/{game_id}", response_model=bool)
 def delete_game(
     game_id: int,
-    repo: GameRepository = Depends(),
+    repo: GameRepository = Depends(authenticator.get_current_account_data)
 ) -> bool:
     return repo.delete_game(game_id)
 

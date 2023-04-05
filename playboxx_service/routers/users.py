@@ -73,14 +73,14 @@ async def create_user(
 
 
 @router.delete("/api/users/{id}", response_model=bool)
-def delete_user(id: int, queries: UserRepository = Depends()):
+def delete_user(id: int, queries: UserRepository = Depends(authenticator.get_current_account_data)):
     queries.delete_user(id)
     return True
 
 
 @router.put("/api/users/{id}", response_model=UserOut)
 def update_user(
-    id: int, user: UserUpdate, queries: UserRepository = Depends()
+    id: int, user: UserUpdate, queries: UserRepository = Depends(authenticator.get_current_account_data)
 ):
     hashed_password = authenticator.hash_password(user.password)
     record = queries.update_user(id, user, hashed_password)
