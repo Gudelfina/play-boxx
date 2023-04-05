@@ -22,3 +22,10 @@ def create_score(score: ScoreIn, repo: ScoreRepository = Depends()):
 @router.get("/scores", response_model=List[ScoreOutWithUserAndGame])
 def get_all_scores(repo: ScoreRepository = Depends()):
     return repo.get_all_scores()
+
+@router.delete("/scores/{score_id}", response_model=bool)
+def delete_score(
+    score_id: int,
+    repo: ScoreRepository = Depends(),
+) -> bool:
+    return repo.delete_score(score_id)

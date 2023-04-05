@@ -99,3 +99,19 @@ class ScoreRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all scores"}
+
+    def delete_score(self, score_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        DELETE FROM scores
+                        WHERE id = %s
+                        """,
+                        [score_id]
+                    )
+                    return True
+        except Exception as e:
+            print(e)
+            return {"message" : "could not delete score"}
