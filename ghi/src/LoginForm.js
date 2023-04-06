@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoginMutation } from "./store/authApi";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setUser } from "./store/userSlice";
+// import { useDispatch } from "react-redux";
+// import { setUser } from "./store/userSlice";
 
 const LoginForm = () => {
 	const [username, setUsername] = useState("");
@@ -10,15 +10,18 @@ const LoginForm = () => {
 	const [login, result] = useLoginMutation();
 
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const userData = await login({ username, password });
-		dispatch(setUser({ ...userData, username }));
+		login({ username, password });
 		e.target.reset();
-		navigate("/games");
 	};
+
+	useEffect(() => {
+		if (result.isSuccess) {
+			navigate("/games");
+		}
+	}, [result.isSuccess, navigate]);
 
 	return (
 		<div className="card text-bg-light mb-3">

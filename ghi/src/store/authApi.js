@@ -54,7 +54,13 @@ export const authApi = createApi({
 			}),
 			providesTags: [TOKEN_TAG],
 			onQueryStarted(_, { dispatch, queryFulfilled }) {
-				queryFulfilled.then(({ data }) => dispatch(setUser(data)));
+				queryFulfilled.then(({ data }) => {
+					if (data && data.user) {
+						dispatch(setUser(data));
+					} else {
+						dispatch(logOut());
+					}
+				});
 			},
 			onError: (error, { dispatch }) => {
 				console.error(error);
