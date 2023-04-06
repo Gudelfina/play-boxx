@@ -30,15 +30,6 @@ services:
     ports:
       - "15432:5432"
 
-  # playboxx_service:
-  #   build:
-  #     context: ./playboxx_service
-  #     dockerfile: ./Dockerfile.dev
-  #   ports:
-  #   volumes:
-  #     - ./playboxx_service:/app
-  #   environment:
-
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
