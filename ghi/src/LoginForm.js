@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLoginMutation } from "./store/authApi";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginForm() {
   const [username, setUsername] = useState("");
@@ -13,6 +15,10 @@ export default function LoginForm() {
     login({ username, password });
     e.target.reset();
   };
+
+  if (result.isSuccess) {
+    toast(`Welcome, ${username}`, { toastId: "loginSuccess" });
+  }
 
   useEffect(() => {
     if (result.isSuccess) {
