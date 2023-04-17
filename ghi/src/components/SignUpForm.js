@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useSignupMutation } from "./store/authApi";
+import { useSignupMutation } from "../store/authApi";
 import { useNavigate } from "react-router-dom";
+import "flowbite/dist/flowbite.min.css";
 
-export default function Signup() {
+export default function SignUpForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -27,7 +28,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (result.isSuccess) {
-      navigate("/games");
+      navigate("/");
     }
   }, [result.isSuccess, navigate]);
 

@@ -1,0 +1,39 @@
+.c-button {
+  background-color: #ff9494;
+  color: #fff;
+  margin-top: 15px;
+}
+
+.c-bg {
+  background-color: #b8dad9;
+}
+
+.c-card {
+  padding: 2rem;
+}
+
+/* @media (min-width: 576px) {
+  .c-card {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 50px;
+  }
+
+  .c-input {
+    font-size: 1.2rem;
+    padding: 10px 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .c-card {
+    max-width: 500px;
+    margin-top: 100px;
+  }
+}
+
+@media (min-width: 992px) {
+  .c-card {
+    max-width: 600px;
+  }
+} */
