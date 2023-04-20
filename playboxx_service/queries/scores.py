@@ -28,6 +28,7 @@ class ScoreOut(BaseModel):
 class ScoreOutWithUserAndGame(BaseModel):
     id: int
     score: int
+    time_completed: str
     played_on: datetime
     player_id: UserOut
     game_id: GameOut
@@ -71,7 +72,9 @@ class ScoreRepository:
                         SELECT s.id, s.score, s.played_on, s.time_completed, u.id, u.first_name, u.last_name, u.username, u.email, u.profile_picture, g.*
                         FROM scores s
                         INNER JOIN users u ON s.player_id = u.id
-                        INNER JOIN games g ON s.game_id = g.id;
+                        INNER JOIN games g ON s.game_id = g.id
+                        ORDER BY s.score DESC, CAST(s.time_completed as int)
+                        LIMIT 10;
                         """,
                     )
                     result = []
@@ -108,7 +111,7 @@ class ScoreRepository:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    result = db.execute(
+                    db.execute(
                         """
                         DELETE FROM scores
                         WHERE id = %s
