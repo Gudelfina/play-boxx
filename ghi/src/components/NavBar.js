@@ -58,7 +58,7 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link href="/navbars" active={true}>
+        <Navbar.Link href="/" active={true}>
           Home
         </Navbar.Link>
         <Navbar.Link href="/games">Games</Navbar.Link>
@@ -67,33 +67,4 @@ export default function NavBar() {
       </Navbar.Collapse>
     </Navbar>
   );
-}
-
-{
-  /* <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-      <div>
-        <NavLink to="/">PlayBoxx</NavLink>
-        <div>
-          <NavLink to="/leaderboard">Leaderboard</NavLink>
-          <ul>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          <NavLink to="/games">Games</NavLink>
-          <ul>
-            <li></li>
-          </ul>
-        </div>
-        {token ? (
-          <button onClick={() => logout()}>Logout</button>
-        ) : (
-          <>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/signup">Signup</NavLink>
-          </>
-        )}
-      </div>
-    </nav>
-  ); */
 }
