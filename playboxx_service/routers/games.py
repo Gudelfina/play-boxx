@@ -12,7 +12,7 @@ router = APIRouter()
 
 
 @router.post("/games", response_model=GameOut)
-def create_game(game: GameIn, repo: GameRepository = Depends(authenticator.get_current_account_data)):
+def create_game(game: GameIn, repo: GameRepository = Depends(), account_data: dict = Depends(authenticator.get_current_account_data)):
     return repo.create_game(game)
 
 
@@ -27,7 +27,8 @@ def get_all_games(
 def update_game(
     game_id: int,
     game: GameIn,
-    repo: GameRepository = Depends(authenticator.get_current_account_data),
+    repo: GameRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
     return repo.update_game(game_id, game)
 
@@ -35,7 +36,8 @@ def update_game(
 @router.delete("/games/{game_id}", response_model=bool)
 def delete_game(
     game_id: int,
-    repo: GameRepository = Depends(authenticator.get_current_account_data)
+    repo: GameRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ) -> bool:
     return repo.delete_game(game_id)
 

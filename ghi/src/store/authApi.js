@@ -39,12 +39,13 @@ export const authApi = createApi({
       },
       invalidatesTags: [TOKEN_TAG],
       onQueryStarted(_, { dispatch, queryFulfilled }) {
-        queryFulfilled.then(() =>
-          dispatch(authApi.endpoints.getToken.initiate())
-        );
-      },
-      onError: (error) => {
-        console.error(error);
+        queryFulfilled
+          .then(() => {
+            dispatch(authApi.endpoints.getToken.initiate());
+          })
+          .catch((error) => {
+            console.error("Login failed:", error.error.data.detail);
+          });
       },
     }),
     getToken: builder.query({
