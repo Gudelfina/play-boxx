@@ -2,3 +2,10 @@
   height: 200px;
   size: 200px;
 }
+
+.container {
+  border: 1px;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}

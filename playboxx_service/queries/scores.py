@@ -14,6 +14,7 @@ class ScoreIn(BaseModel):
     score: int
     player_id: int
     game_id: int
+    time_completed: str
 
 
 class ScoreOut(BaseModel):
@@ -21,6 +22,7 @@ class ScoreOut(BaseModel):
     score: int
     player_id: int
     game_id: int
+    time_completed: str
 
 
 class ScoreOutWithUserAndGame(BaseModel):
@@ -40,13 +42,14 @@ class ScoreRepository:
                         score.score,
                         score.player_id,
                         score.game_id,
+                        score.time_completed,
                     ]
                     result = db.execute(
                         """
                         INSERT INTO scores
-                            (score, player_id, game_id)
+                            (score, player_id, game_id, time_completed)
                         VALUES
-                            (%s, %s, %s)
+                            (%s, %s, %s, %s)
                         RETURNING id;
                         """,
                         params,
@@ -65,7 +68,7 @@ class ScoreRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT s.id, s.score, s.played_on, u.id, u.first_name, u.last_name, u.username, u.email, u.profile_picture, g.*
+                        SELECT s.id, s.score, s.played_on, s.time_completed, u.id, u.first_name, u.last_name, u.username, u.email, u.profile_picture, g.*
                         FROM scores s
                         INNER JOIN users u ON s.player_id = u.id
                         INNER JOIN games g ON s.game_id = g.id;
@@ -74,23 +77,24 @@ class ScoreRepository:
                     result = []
                     for record in db:
                         player_dict = {
-                            "id": record[3],
-                            "first_name": record[4],
-                            "last_name": record[5],
-                            "username": record[6],
-                            "email": record[7],
-                            "profile_picture": record[8]
+                            "id": record[4],
+                            "first_name": record[5],
+                            "last_name": record[6],
+                            "username": record[7],
+                            "email": record[8],
+                            "profile_picture": record[9]
                         }
                         game_dict = {
-                            "id": record[9],
-                            "name": record[10],
-                            "description": record[11],
-                            "picture_url": record[12]
+                            "id": record[10],
+                            "name": record[11],
+                            "description": record[12],
+                            "picture_url": record[13]
                         }
                         score = ScoreOutWithUserAndGame(
                             id=record[0],
                             score=record[1],
                             played_on=record[2],
+                            time_completed=record[3],
                             player_id=player_dict,
                             game_id=game_dict,
                         )
