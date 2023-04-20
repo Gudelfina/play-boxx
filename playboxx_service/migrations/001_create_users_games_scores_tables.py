@@ -40,7 +40,8 @@ steps = [
             score INTEGER NOT NULL,
             played_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             player_id INTEGER NOT NULL REFERENCES users(id),
-            game_id INTEGER NOT NULL REFERENCES games(id)
+            game_id INTEGER NOT NULL REFERENCES games(id),
+            time_completed VARCHAR(100)
         );
         """,
         # "Down" SQL statement
