@@ -6,6 +6,7 @@ import userReducer from "./userSlice";
 import { userSlice } from "./userSlice";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "@reduxjs/toolkit";
+import { quizgameSlice } from "./quizgameSlice";
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ export const rootReducers = combineReducers({
   auth: userSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   user: userReducer,
+  quizgame: quizgameSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
