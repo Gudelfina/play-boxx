@@ -1,17 +1,20 @@
 .c-button {
-  background-color: #ff9494;
-  color: #fff;
-  margin-top: 15px;
+	background-color: #ff9494;
+	color: #fff;
+	margin-top: 15px;
 }
 
 .c-bg {
-  background-color: #b8dad9;
+	background-color: #b8dad9;
 }
 
 .c-card {
-  padding: 2rem;
+	padding: 2rem;
 }
 
+.padding {
+	padding: 15px;
+}
 /* @media (min-width: 576px) {
   .c-card {
     max-width: 400px;

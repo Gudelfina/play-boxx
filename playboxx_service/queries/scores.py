@@ -74,7 +74,6 @@ class ScoreRepository:
                         INNER JOIN users u ON s.player_id = u.id
                         INNER JOIN games g ON s.game_id = g.id
                         ORDER BY s.score DESC, CAST(s.time_completed as int)
-                        LIMIT 10;
                         """,
                     )
                     result = []

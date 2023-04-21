@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import "flowbite/dist/flowbite.min.css";
 import { Table } from "flowbite-react";
 import trophy from "../images/trophy.gif";
 import confetti from "../images/confetti.gif";
 
-function formatTime(time) {
+export function formatTime(time) {
 	let t = time.slice(0, -1);
 	let result = "";
 
@@ -38,7 +37,13 @@ export default function LeaderBoard() {
 					throw new Error("Failed to fetch scores");
 				}
 				const data = await response.json();
-				setScores(data);
+
+				let dataSet = [];
+
+				for (let i = 0; i < 10; i++) {
+					dataSet.push(data[i]);
+				}
+				setScores(dataSet);
 			} catch (e) {
 				console.error("Error fetching scores", e);
 			}
