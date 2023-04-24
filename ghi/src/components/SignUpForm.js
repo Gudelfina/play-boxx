@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSignupMutation } from "../store/authApi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AiFillEyeInvisible, AiFillEye, AiOutlineLock } from "react-icons/ai";
 
 export default function Signup() {
+	// States for sending form data to backend for user creation
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [username, setUsername] = useState("");
@@ -13,12 +16,17 @@ export default function Signup() {
 	const [profilePicture, setProfilePicture] = useState("");
 	const [passwordConfirmationError, setPasswordConfirmationError] =
 		useState("");
+
+	// States for show/hide password & password confirmation
+	const [showPassword, setShowPassword] = useState(false);
+	const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
 	const [signup, result] = useSignupMutation();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!validatePassword(password, passwordConfirmation)) {
+		if (validatePassword(password, passwordConfirmation)) {
 			setPasswordConfirmationError("");
 			signup({
 				first_name: firstName,
@@ -32,28 +40,55 @@ export default function Signup() {
 		}
 	};
 
+	// Toggles show/hide password and password confirmation, respectively
+	const toggleShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
+	const toggleShowPasswordConfirm = () => {
+		setShowPasswordConfirm(!showPasswordConfirm);
+	};
+
+	// Toast message and navigate to Landing Page if response is successful
 	useEffect(() => {
 		if (result.isSuccess) {
+			toast.success(`Welcome, ${username}`, {
+				position: "bottom-right",
+				autoClose: 4000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
 			navigate("/");
 		}
-	}, [result.isSuccess, navigate]);
+	}, [result.isSuccess, navigate, username]);
 
+	// Validate password before sending POST request to create user
 	const validatePassword = (password, passwordConfirmation) => {
+		// Check if password & password confirmation is at least 8 characters and both match
 		if (password.length <= 7 && password !== passwordConfirmation) {
 			setPasswordConfirmationError(
 				"Passwords do not match and enter a password with 8 or more characters"
 			);
-			return true;
+			return false;
+
+			// Check if password & password confirmation is at least 8 characters
 		} else if (password.length <= 7) {
 			setPasswordConfirmationError(
 				"Please enter a password with 8 or more characters"
 			);
-			return true;
+			return false;
+
+			// Check if password & password confirmation both match
 		} else if (password !== passwordConfirmation) {
 			setPasswordConfirmationError("Passwords do not match!");
-			return true;
+			return false;
+
+			// Check if password & password confirmation both match
 		} else if (password === passwordConfirmation) {
-			return "";
+			return true;
 		}
 	};
 
@@ -125,8 +160,15 @@ export default function Signup() {
 							</div>
 							{/* Password input */}
 							<div className="relative mb-6" data-te-input-wrapper-init>
+								<div className="text-2xl absolute top-[10px] right-3">
+									{showPassword === false ? (
+										<AiFillEye onClick={toggleShowPassword} />
+									) : (
+										<AiFillEyeInvisible onClick={toggleShowPassword} />
+									)}
+								</div>
 								<input
-									type="password"
+									type={showPassword === false ? "password" : "text"}
 									name="floating_password"
 									id="floating_password"
 									className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -147,8 +189,15 @@ export default function Signup() {
 							</div>
 							{/* Password Confirmation input */}
 							<div className="relative mb-6" data-te-input-wrapper-init>
+								<div className="text-2xl absolute top-[10px] right-3">
+									{showPasswordConfirm === false ? (
+										<AiFillEye onClick={toggleShowPasswordConfirm} />
+									) : (
+										<AiFillEyeInvisible onClick={toggleShowPasswordConfirm} />
+									)}
+								</div>
 								<input
-									type="password"
+									type={showPasswordConfirm === false ? "password" : "text"}
 									name="floating_password_confirmation"
 									id="floating_password_confirmation"
 									className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
