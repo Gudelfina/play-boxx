@@ -1,42 +1,29 @@
 .c-button {
-	background-color: #ff9494;
-	color: #fff;
-	margin-top: 15px;
+  background-color: #ff9494;
+  color: #fff;
+  margin-top: 15px;
 }
 
 .c-bg {
-	background-color: #b8dad9;
+  background-color: #b8dad9;
 }
 
 .c-card {
-	padding: 2rem;
+  padding: 2rem;
 }
 
 .padding {
-	padding: 15px;
-}
-/* @media (min-width: 576px) {
-  .c-card {
-    max-width: 400px;
-    margin: auto;
-    margin-top: 50px;
-  }
-
-  .c-input {
-    font-size: 1.2rem;
-    padding: 10px 12px;
-  }
+  padding: 15px;
 }
 
-@media (min-width: 768px) {
-  .c-card {
-    max-width: 500px;
-    margin-top: 100px;
-  }
+.floating-label {
+  position: absolute;
+  top: -0.5rem;
+  left: 1.5rem;
+  background-color: white;
+  padding: 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #1949e9;
+  transition: all 0.2s ease-in-out;
 }
-
-@media (min-width: 992px) {
-  .c-card {
-    max-width: 600px;
-  }
-} */
