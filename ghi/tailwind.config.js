@@ -15,6 +15,10 @@ module.exports = {
 				maverick: "#C0B9BF",
 				lavender: "#E6E6FA",
 				hoverpink: "#f77777",
+				darkpink: "#FF9494",
+				lightpink: "#FFD1D1",
+				lighterpink: "#FFE3E1",
+				beige: "#FFF5E4",
 			},
 			screens: {
 				sm: "640px",

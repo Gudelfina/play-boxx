@@ -18,6 +18,8 @@ export const DeleteModal = (props) => {
 				},
 			});
 
+			props.setIsDeleted(!props.isDeleted);
+
 			if (!response.ok) {
 				throw new Error("Couldn't delete score");
 			}
