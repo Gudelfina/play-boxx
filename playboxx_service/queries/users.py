@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import Optional
+from typing import Optional, List, Union
 
 
 class DuplicateUserError(ValueError):
-    pass
+    message: str
 
 
 class UserIn(BaseModel):
@@ -55,7 +55,14 @@ class UserRepository:
                 result = db.execute(
                     """
                     INSERT INTO users
-                        (first_name, last_name, username, hashed_password, email, profile_picture)
+                        (
+                            first_name,
+                            last_name,
+                            username,
+                            hashed_password,
+                            email,
+                            profile_picture
+                        )
                     VALUES
                         (%s, %s, %s, %s, %s, %s)
                     RETURNING id;
@@ -84,8 +91,9 @@ class UserRepository:
                     WHERE username = %s
                     or email = %s;
                     """,
-                    [username,
-                     username,
+                    [
+                        username,
+                        username,
                     ],
                 )
                 user = result.fetchone()
@@ -100,6 +108,30 @@ class UserRepository:
                     email=user[5],
                     profile_picture=user[6],
                 )
+
+    def get_all_usernames_and_emails(
+        self,
+    ) -> Union[DuplicateUserError, List]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT username, email, id
+                        FROM users;
+                        """
+                    )
+                    return [
+                        {
+                            "username": record[0],
+                            "email": record[1],
+                            "id": record[2],
+                        }
+                        for record in db
+                    ]
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get all usernames"}
 
     def delete_user(self, id: int):
         with pool.connection() as conn:

@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Union, Optional
+from typing import List, Union
 from queries.pool import pool
 from queries.users import UserOut
 from queries.games import GameOut
@@ -57,9 +57,7 @@ class ScoreRepository:
                     )
                     id = result.fetchone()[0]
                     old_data = score.dict()
-                    return ScoreOut(
-                        id=id, **old_data
-                    )
+                    return ScoreOut(id=id, **old_data)
         except Exception:
             return {"message": "Could not create score"}
 
@@ -84,13 +82,13 @@ class ScoreRepository:
                             "last_name": record[6],
                             "username": record[7],
                             "email": record[8],
-                            "profile_picture": record[9]
+                            "profile_picture": record[9],
                         }
                         game_dict = {
                             "id": record[10],
                             "name": record[11],
                             "description": record[12],
-                            "picture_url": record[13]
+                            "picture_url": record[13],
                         }
                         score = ScoreOutWithUserAndGame(
                             id=record[0],
@@ -115,9 +113,9 @@ class ScoreRepository:
                         DELETE FROM scores
                         WHERE id = %s
                         """,
-                        [score_id]
+                        [score_id],
                     )
                     return True
         except Exception as e:
             print(e)
-            return {"message" : "could not delete score"}
+            return {"message": "could not delete score"}

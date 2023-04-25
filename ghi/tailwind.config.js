@@ -21,6 +21,8 @@ module.exports = {
         beige: "#FFF5E4",
         punch: "#F25278",
         aesthetic: "#FdF2F6",
+        navy: "#1E6B8A",
+        lightblue: "#2A82B8",
       },
       screens: {
         sm: "640px",

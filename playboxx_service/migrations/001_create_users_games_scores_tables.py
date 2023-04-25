@@ -39,7 +39,7 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             score INTEGER NOT NULL,
             played_on TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            player_id INTEGER NOT NULL REFERENCES users(id),
+            player_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
             game_id INTEGER NOT NULL REFERENCES games(id),
             time_completed VARCHAR(100)
         );

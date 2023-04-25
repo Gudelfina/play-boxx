@@ -7,13 +7,6 @@ from fastapi import (
     Request,
 )
 
-from jwtdown_fastapi.authentication import Token
-from authenticator import authenticator
-from pydantic import BaseModel
-from queries.users import UserOutWithPassword
-
-router = APIRouter()
-
 from queries.users import (
     UserIn,
     UserOut,
@@ -21,6 +14,15 @@ from queries.users import (
     DuplicateUserError,
     UserUpdate,
 )
+
+
+from jwtdown_fastapi.authentication import Token
+from authenticator import authenticator
+from pydantic import BaseModel
+from queries.users import UserOutWithPassword
+from typing import List
+
+router = APIRouter()
 
 
 class UserForm(BaseModel):
@@ -72,15 +74,29 @@ async def create_user(
     return UserToken(user=user, **token.dict())
 
 
+@router.get("/api/users", response_model=List)
+def get_all_usernames_and_emails(
+    repo: UserRepository = Depends(),
+):
+    return repo.get_all_usernames_and_emails()
+
+
 @router.delete("/api/users/{id}", response_model=bool)
-def delete_user(id: int, queries: UserRepository = Depends(authenticator.get_current_account_data)):
+def delete_user(
+    id: int,
+    queries: UserRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
     queries.delete_user(id)
     return True
 
 
 @router.put("/api/users/{id}", response_model=UserOut)
 def update_user(
-    id: int, user: UserUpdate, queries: UserRepository = Depends(authenticator.get_current_account_data)
+    id: int,
+    user: UserUpdate,
+    queries: UserRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     hashed_password = authenticator.hash_password(user.password)
     record = queries.update_user(id, user, hashed_password)

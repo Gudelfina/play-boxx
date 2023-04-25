@@ -10,28 +10,37 @@ import LandingPage from "./components/LandingPage";
 import { ProfilePage } from "./components/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreatorPage from "./components/CreatorPage";
+import EditProfilePage from "./components/EditProfilePage";
 
 export default function App() {
-  return (
-    <>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/login" element={<LoginForm />}></Route>
-        <Route path="/signup" element={<SignUpForm />}></Route>
-        <Route path="/leaderboard" element={<LeaderBoard />}></Route>
-        <Route path="/games" element={<GamePage />}></Route>
-        <Route path="/games/quiz" element={<StartPage />}></Route>
-        <Route path="/creators" element={<CreatorPage />}></Route>
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    </>
-  );
+	return (
+		<>
+			<NavBar />
+			<Routes>
+				<Route path="/" element={<LandingPage />}></Route>
+				<Route path="/login" element={<LoginForm />}></Route>
+				<Route path="/signup" element={<SignUpForm />}></Route>
+				<Route path="/leaderboard" element={<LeaderBoard />}></Route>
+				<Route path="/games" element={<GamePage />}></Route>
+				<Route path="/games/quiz" element={<StartPage />}></Route>
+				<Route path="/creators" element={<CreatorPage />}></Route>
+				<Route
+					path="/profile"
+					element={
+						<ProtectedRoute>
+							<ProfilePage />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/profile/edit"
+					element={
+						<ProtectedRoute>
+							<EditProfilePage />
+						</ProtectedRoute>
+					}
+				/>
+			</Routes>
+		</>
+	);
 }
