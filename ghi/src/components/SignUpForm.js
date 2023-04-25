@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AiFillEyeInvisible, AiFillEye, AiOutlineLock } from "react-icons/ai";
+import arcade from "../images/arcade.png";
 
 export default function Signup() {
 	// States for sending form data to backend for user creation
@@ -98,11 +99,12 @@ export default function Signup() {
 				<div className="g-6 flex h-full items-center justify-center lg:justify-between">
 					{/* Left column container with background */}
 					<div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-						<img
+						<img className="h-auto max-w-sm" src={arcade} />
+						{/* <img
 							src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
 							className="w-full"
 							alt="Phone image"
-						/>
+						/> */}
 					</div>
 					{/* Right column container with form */}
 					<div className="md:w-8/12 lg:ml-6 lg:w-5/12">
@@ -249,7 +251,7 @@ export default function Signup() {
 							<div className="text-sm text-gray-500 mb-5">
 								Already have an account?{" "}
 								<Link
-									className="hover:underline text-blue-500 after:content-['_↗']"
+									className="hover:underline text-hoverpink after:content-['_↗']"
 									to="/login">
 									Login here
 								</Link>

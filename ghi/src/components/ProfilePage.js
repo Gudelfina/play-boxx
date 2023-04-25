@@ -47,7 +47,7 @@ export const ProfilePage = () => {
 
   return (
     <div className="">
-      <div className="w-screen h-screen bg-beige">
+      <div className="w-full h-full p-7 bg-beige">
         {user.profile_picture ? (
           <img
             className="rounded-full mx-auto  w-36 h-36"
@@ -69,15 +69,6 @@ export const ProfilePage = () => {
           {/* <p>User ID: {user.id}</p> */}
           <p className="text-md font-medium">Email: {user.email}</p>
         </div>
-        <div className="flex justify-center mb-6">
-          <button
-            onClick={handleEditNavigate}
-            className="bg-navy hover:bg-lightblue text-white font-bold py-2 px-4 rounded"
-          >
-            Edit User
-          </button>
-        </div>
-
         <div className="text-center text-2xl font-bold mb-2">
           Top 10 Personal Leaderboard
         </div>
