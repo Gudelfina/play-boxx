@@ -66,7 +66,7 @@ export default function EditProfilePage() {
 			);
 			const data = await response.json();
 			for (let db of data) {
-				if (user.id !== db.id) {
+				if (user.id !== db.id.toString()) {
 					if (db.username === username || db.email === email) {
 						toast.error("Username or email already exists", {
 							position: "bottom-right",
