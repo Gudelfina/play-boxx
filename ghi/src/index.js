@@ -9,9 +9,11 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const domain = /https:\/\/[^/]+/;
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 root.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<BrowserRouter basename={basename}>
 			<PersistGate persistor={persistor}>
 				<Routes>
 					<Route path="/*" element={<App />}></Route>
