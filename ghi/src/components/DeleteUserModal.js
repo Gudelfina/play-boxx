@@ -40,7 +40,7 @@ export const DeleteUserModal = (props) => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Delete user
+        Delete your profile
       </button>
       {showModal ? (
         <>
