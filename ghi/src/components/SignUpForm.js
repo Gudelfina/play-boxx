@@ -3,7 +3,7 @@ import { useSignupMutation } from "../store/authApi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AiFillEyeInvisible, AiFillEye, AiOutlineLock } from "react-icons/ai";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import arcade from "../images/arcade.png";
 
 export default function Signup() {
@@ -99,7 +99,7 @@ export default function Signup() {
 				<div className="g-6 flex h-full items-center justify-center lg:justify-between">
 					{/* Left column container with background */}
 					<div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-						<img className="h-auto max-w-sm" src={arcade} />
+						<img className="h-auto max-w-sm" alt="" src={arcade} />
 						{/* <img
 							src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
 							className="w-full"

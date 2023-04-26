@@ -9,7 +9,7 @@ export default function Timer(props) {
 
 	useEffect(() => {
 		dispatch(setTimeCompleted(time));
-	}, [props.isEndOfGame]);
+	}, [props.isEndOfGame, dispatch, time]);
 
 	useEffect(() => {
 		let interval;

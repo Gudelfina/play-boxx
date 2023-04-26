@@ -178,6 +178,7 @@ export default function LoginForm() {
 					<img
 						className="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"
 						src={loginCard}
+						alt="stones"
 					/>
 				</div>
 			</div>

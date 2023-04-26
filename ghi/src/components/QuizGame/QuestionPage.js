@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 export default function QuestionPage(props) {
 	const score = useSelector((state) => state.quizgame.score);
-	const timer = useSelector((state) => state.quizgame.time_completed);
 
 	return (
 		<div className="component-container container ">

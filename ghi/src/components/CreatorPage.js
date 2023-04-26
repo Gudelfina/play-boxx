@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import panda from "../images/panda.png";
 import bear from "../images/bear.png";
 import elephant from "../images/elephant.png";
@@ -11,7 +10,11 @@ export default function CreatorPage() {
 		<>
 			<div className="h-full w-full bg-beige">
 				<div className="container">
-					<img className="object-cover mx-auto" src={banner} />
+					<img
+						className="object-cover mx-auto"
+						src={banner}
+						alt="Question banner"
+					/>
 				</div>
 			</div>
 			<div className="h-[200vh] p-8 bg-beige mx-auto grid grid-cols-2 grid-flow-row auto-rows-min">
@@ -38,6 +41,7 @@ export default function CreatorPage() {
 									<a href="https://github.com/anguswu1022">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Github icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_44605.png&f=1&nofb=1&ipt=60f2e29c62a8e99fae8e3e977e585e9df98b5fae9c5f330be8ae63b0430572e6&ipo=images"
 										/>
 									</a>
@@ -46,6 +50,7 @@ export default function CreatorPage() {
 									<a href="https://www.linkedin.com/in/angus-wu10">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Linkedin icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.33IcIYftyA5LUavwEs_vxQHaHa%26pid%3DApi&f=1&ipt=bc7f55d4f21d9186620b3d6149f703cbbc4dae8727d32ff669ade2b85e6a8628&ipo=images"
 										/>
 									</a>
@@ -54,6 +59,7 @@ export default function CreatorPage() {
 									<a href="https://gitlab.com/anguswu1022">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Gitlab icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.vS3nPtPbLZqF16SvLTAknwHaG1%26pid%3DApi&f=1&ipt=e2d0d29a940ac76ef2f56125ad783c0f9ef8dbc53a67ff798d7bce0d95c7c44c&ipo=images"
 										/>
 									</a>
@@ -86,6 +92,7 @@ export default function CreatorPage() {
 									<a href="https://github.com/Gudelfina">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Github icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_44605.png&f=1&nofb=1&ipt=60f2e29c62a8e99fae8e3e977e585e9df98b5fae9c5f330be8ae63b0430572e6&ipo=images"
 										/>
 									</a>
@@ -94,6 +101,7 @@ export default function CreatorPage() {
 									<a href="https://www.linkedin.com/in/gudelfina-mendez/">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Linkedin icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.33IcIYftyA5LUavwEs_vxQHaHa%26pid%3DApi&f=1&ipt=bc7f55d4f21d9186620b3d6149f703cbbc4dae8727d32ff669ade2b85e6a8628&ipo=images"
 										/>
 									</a>
@@ -102,6 +110,7 @@ export default function CreatorPage() {
 									<a href="https://gitlab.com/Gudelfina3">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Gitlab icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.vS3nPtPbLZqF16SvLTAknwHaG1%26pid%3DApi&f=1&ipt=e2d0d29a940ac76ef2f56125ad783c0f9ef8dbc53a67ff798d7bce0d95c7c44c&ipo=images"
 										/>
 									</a>
@@ -133,6 +142,7 @@ export default function CreatorPage() {
 									<a href="https://github.com/spunnanithi">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Github icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_44605.png&f=1&nofb=1&ipt=60f2e29c62a8e99fae8e3e977e585e9df98b5fae9c5f330be8ae63b0430572e6&ipo=images"
 										/>
 									</a>
@@ -141,6 +151,7 @@ export default function CreatorPage() {
 									<a href="https://www.linkedin.com/in/sirasit-punnanithi/">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Linkedin icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.33IcIYftyA5LUavwEs_vxQHaHa%26pid%3DApi&f=1&ipt=bc7f55d4f21d9186620b3d6149f703cbbc4dae8727d32ff669ade2b85e6a8628&ipo=images"
 										/>
 									</a>
@@ -149,6 +160,7 @@ export default function CreatorPage() {
 									<a href="https://gitlab.com/spunnanithi">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Gitlab icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.vS3nPtPbLZqF16SvLTAknwHaG1%26pid%3DApi&f=1&ipt=e2d0d29a940ac76ef2f56125ad783c0f9ef8dbc53a67ff798d7bce0d95c7c44c&ipo=images"
 										/>
 									</a>
@@ -180,6 +192,7 @@ export default function CreatorPage() {
 									<a href="https://github.com/Rod9001?tab=projects">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Github icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_44605.png&f=1&nofb=1&ipt=60f2e29c62a8e99fae8e3e977e585e9df98b5fae9c5f330be8ae63b0430572e6&ipo=images"
 										/>
 									</a>
@@ -188,6 +201,7 @@ export default function CreatorPage() {
 									<a href="https://www.linkedin.com/in/rodrigo-olmos-romo?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BFX523HpFSQWpLSkmg8rM5w%3D%3D">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Linkedin icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.33IcIYftyA5LUavwEs_vxQHaHa%26pid%3DApi&f=1&ipt=bc7f55d4f21d9186620b3d6149f703cbbc4dae8727d32ff669ade2b85e6a8628&ipo=images"
 										/>
 									</a>
@@ -196,6 +210,7 @@ export default function CreatorPage() {
 									<a href="https://gitlab.com/rodrigoolmos">
 										<img
 											className="block h-6 w-6 bg-yellow-400 rounded-full"
+											alt="Gitlab icon"
 											src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.vS3nPtPbLZqF16SvLTAknwHaG1%26pid%3DApi&f=1&ipt=e2d0d29a940ac76ef2f56125ad783c0f9ef8dbc53a67ff798d7bce0d95c7c44c&ipo=images"
 										/>
 									</a>

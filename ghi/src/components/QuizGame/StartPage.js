@@ -37,9 +37,7 @@ export default function StartPage() {
 	) : (
 		<div className=" h-[100vh]  wrap">
 			<div className="container ">
-				<a
-					href="#"
-					className="group flex flex-col justify-between rounded-sm bg-white p-4 shadow-xl transition-shadow hover:shadow-lg sm:p-6 lg:p-8">
+				<div className="group flex flex-col justify-between rounded-sm bg-white p-4 shadow-xl transition-shadow hover:shadow-lg sm:p-6 lg:p-8">
 					<div>
 						<h3 className="text-3xl font-bold text-indigo-600 sm:text-5xl">
 							10 Question Trivia
@@ -62,7 +60,7 @@ export default function StartPage() {
 							Start quiz game
 						</button>
 					</div>
-				</a>
+				</div>
 			</div>
 		</div>
 	);

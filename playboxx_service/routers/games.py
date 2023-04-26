@@ -2,7 +2,7 @@ from fastapi import (
     APIRouter,
     Depends,
     Response,
-    )
+)
 from queries.games import GameIn, GameOut, GameRepository, Error
 from typing import List, Union, Optional
 from authenticator import authenticator
@@ -12,7 +12,11 @@ router = APIRouter()
 
 
 @router.post("/games", response_model=GameOut)
-def create_game(game: GameIn, repo: GameRepository = Depends(), account_data: dict = Depends(authenticator.get_current_account_data)):
+def create_game(
+    game: GameIn,
+    repo: GameRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
     return repo.create_game(game)
 
 
@@ -28,7 +32,7 @@ def update_game(
     game_id: int,
     game: GameIn,
     repo: GameRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.update_game(game_id, game)
 
@@ -37,7 +41,7 @@ def update_game(
 def delete_game(
     game_id: int,
     repo: GameRepository = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete_game(game_id)
 

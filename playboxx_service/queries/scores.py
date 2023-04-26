@@ -28,8 +28,8 @@ class ScoreOut(BaseModel):
 class ScoreOutWithUserAndGame(BaseModel):
     id: int
     score: int
-    time_completed: str
     played_on: datetime
+    time_completed: str
     player_id: UserOut
     game_id: GameOut
 
@@ -67,7 +67,18 @@ class ScoreRepository:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT s.id, s.score, s.played_on, s.time_completed, u.id, u.first_name, u.last_name, u.username, u.email, u.profile_picture, g.*
+                        SELECT
+                            s.id,
+                            s.score,
+                            s.played_on,
+                            s.time_completed,
+                            u.id,
+                            u.first_name,
+                            u.last_name,
+                            u.username,
+                            u.email,
+                            u.profile_picture,
+                            g.*
                         FROM scores s
                         INNER JOIN users u ON s.player_id = u.id
                         INNER JOIN games g ON s.game_id = g.id

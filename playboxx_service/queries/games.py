@@ -42,9 +42,7 @@ class GameRepository:
                     )
                     id = result.fetchone()[0]
                     old_data = games.dict()
-                    return GameOut(
-                        id=id, **old_data
-                    )
+                    return GameOut(id=id, **old_data)
         except Exception:
             return {"message": "Could not create game"}
 
@@ -55,9 +53,9 @@ class GameRepository:
                     db.execute(
                         """
                         SELECT id
-                             , name
-                             , description
-                             , picture_url
+                            , name
+                            , description
+                            , picture_url
                         FROM games;
                         """
                     )
@@ -109,7 +107,7 @@ class GameRepository:
                         DELETE FROM games
                         WHERE id = %s
                         """,
-                        [game_id]
+                        [game_id],
                     )
                     return True
         except Exception as e:
@@ -129,7 +127,7 @@ class GameRepository:
                         FROM games
                         WHERE id = %s
                         """,
-                        [game_id]
+                        [game_id],
                     )
                     record = result.fetchone()
                     if record is None:

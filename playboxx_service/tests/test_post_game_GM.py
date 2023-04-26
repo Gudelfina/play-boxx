@@ -19,7 +19,9 @@ class MockAuthenticator:
 def test_create_game():
     # Arrange
     app.dependency_overrides[GameRepository] = lambda: MockGameRepository()
-    app.dependency_overrides[authenticator.get_current_account_data] = lambda: MockAuthenticator().get_current_account_data()
+    app.dependency_overrides[
+        authenticator.get_current_account_data
+    ] = lambda: MockAuthenticator().get_current_account_data()
 
     mock_game = {
         "name": "Game",
@@ -29,9 +31,7 @@ def test_create_game():
 
     auth_token = "valid_auth_token"
 
-    headers = {
-        "Authorization": f"Bearer {auth_token}"
-    }
+    headers = {"Authorization": f"Bearer {auth_token}"}
 
     # Act
     response = client.post("/games", json=mock_game, headers=headers)

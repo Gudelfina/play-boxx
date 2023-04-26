@@ -5,6 +5,7 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class MockScoreRepository:
     def create_score(self, score):
         result = {
@@ -12,32 +13,34 @@ class MockScoreRepository:
             "score": 5,
             "player_id": 1,
             "game_id": 1,
-            "time_completed": "10000"
+            "time_completed": "10000",
         }
         result.update(score)
         return result
 
+
 def accounts_override():
-    return {
-        "id": 1,
-        "email": "llee@example.com",
-        "username": "LindyLee"
-    }
+    return {"id": 1, "email": "llee@example.com", "username": "LindyLee"}
+
 
 def test_create_score():
     # Arrange
     app.dependency_overrides[ScoreRepository] = MockScoreRepository
-    app.dependency_overrides[authenticator.get_current_account_data] = accounts_override
+    app.dependency_overrides[
+        authenticator.get_current_account_data
+    ] = accounts_override
 
     # Act
     json = {
         "score": 5,
         "player_id": 1,
         "game_id": 1,
-        "time_completed": "10000"
+        "time_completed": "10000",
     }
 
-    expected = ScoreOut(id=1, score=5, player_id=1, game_id=1, time_completed="10000")
+    expected = ScoreOut(
+        id=1, score=5, player_id=1, game_id=1, time_completed="10000"
+    )
 
     response = client.post("/scores", json=json)
 
