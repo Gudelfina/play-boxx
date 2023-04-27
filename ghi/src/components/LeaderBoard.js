@@ -5,22 +5,23 @@ import trophy from "../images/trophy.gif";
 import confetti from "../images/confetti.gif";
 
 export function formatTime(time) {
-  let t = time.slice(0, -1);
-  let result = "";
+  time = time.slice(0, -1);
 
-  if (t.length % 2 !== 0) {
-    t = "0" + t;
+  let ms = time % 100;
+  let ss = Math.floor(time / 100) % 60;
+  let mm = Math.floor(time / 6000);
+
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  if (ss < 10) {
+    ss = "0" + ss;
+  }
+  if (ms < 10) {
+    ms = "0" + ms;
   }
 
-  for (let i = 0; i < t.length; i += 2) {
-    result += t.substr(i, 2) + (i + 2 < t.length ? ":" : "");
-  }
-
-  if (result.length < 6) {
-    result = "00:" + result;
-  }
-
-  return result;
+  return `${mm}:${ss}:${ms}`;
 }
 
 export default function LeaderBoard() {
