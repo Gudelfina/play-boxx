@@ -7,6 +7,10 @@ import { Navbar, Dropdown, Avatar } from "flowbite-react";
 import logo from "../images/logo.gif";
 import "./Component.css";
 import { UserIcon } from "../images/userIcon";
+import home from "../images/home.png";
+import joystick from "../images/joystick.png";
+import wreath from "../images/wreath.png";
+import creator from "../images/creator.png";
 
 export default function NavBar() {
   const token = useSelector(selectCurrentToken);
@@ -95,7 +99,14 @@ export default function NavBar() {
             e.preventDefault();
             navigate("/");
           }}
+          style={{ display: "flex", alignItems: "center" }}
         >
+          <img
+            style={{ height: 20, width: 20 }}
+            src={home}
+            className="mr-1 h-6 sm:h-9"
+            alt="home icon"
+          />
           Home
         </NavLink>
         <NavLink
@@ -105,7 +116,14 @@ export default function NavBar() {
             e.preventDefault();
             navigate("/games");
           }}
+          style={{ display: "flex", alignItems: "center" }}
         >
+          <img
+            style={{ height: 20, width: 20 }}
+            src={joystick}
+            className="mr-1 h-6 sm:h-9"
+            alt="game icon"
+          />
           Games
         </NavLink>
         <NavLink
@@ -115,7 +133,14 @@ export default function NavBar() {
             e.preventDefault();
             navigate("/leaderboard");
           }}
+          style={{ display: "flex", alignItems: "center" }}
         >
+          <img
+            style={{ height: 20, width: 20 }}
+            src={wreath}
+            className="mr-1 h-6 sm:h-9"
+            alt="wreath icon"
+          />
           Leaderboard
         </NavLink>
         <NavLink
@@ -125,7 +150,14 @@ export default function NavBar() {
             e.preventDefault();
             navigate("/creators");
           }}
+          style={{ display: "flex", alignItems: "center" }}
         >
+          <img
+            style={{ height: 20, width: 20 }}
+            src={creator}
+            className="mr-1 h-6 sm:h-9"
+            alt="creator icon"
+          />
           Creators
         </NavLink>
       </Navbar.Collapse>
