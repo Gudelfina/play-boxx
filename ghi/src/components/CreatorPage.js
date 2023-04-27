@@ -179,7 +179,7 @@ export default function CreatorPage() {
             />
             <div className="flex flex-col justify-between p-4 leading-normal">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Software Engineer:
+                Full-Stack Software Engineer:
               </h5>
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Rodrigo Olmos
