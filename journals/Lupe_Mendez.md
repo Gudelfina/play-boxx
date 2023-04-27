@@ -69,3 +69,7 @@ Today we worked on styling the creator page and fixing some bugs. Then we merged
 ## April 26th
 
 Today we worked on trying to fix our url routes. We ended up moving our browser router from index.js to app.js and modified our navbar.js. After those changes, we were able to navigate again. We also noticed that the leaderboard posted the scores twice sometimes so we’re trying to get the score to only post once. We were able to fix it by modifying the useEffect and score variable so it only posts once and not twice. Were still getting the cors error from yesterday, but were told not to worry too much about it. Our pages are running and everything seems to be working as well. So we are focusing on styling our pages now and getting the readme started as well.
+
+## April 27th
+
+Today we finished our README.MD files and are getting ready to present our final project!
