@@ -86,12 +86,6 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse className="navbar-collapse pt-1 justify-content-center">
-        {/* <Navbar.Link href="/" active={true}>
-          Home
-        </Navbar.Link> */}
-        {/* <Navbar.Link href="/games">Games</Navbar.Link>
-        <Navbar.Link href="/leaderboard">Leaderboard</Navbar.Link>
-        <Navbar.Link href="/creators">Creators</Navbar.Link> */}
         <NavLink
           to={"/" || "play-boxx/"}
           className={({ isActive }) => (isActive ? "active" : "inactive")}
