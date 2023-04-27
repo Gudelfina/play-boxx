@@ -36,6 +36,46 @@
   padding: 20px;
 }
 
-a.active {
-  color: #7366ad;
+.navbar-collapse .active {
+  color: white;
+  position: relative;
+}
+
+/* hover and active links */
+.navbar-collapse .active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(1);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(145, 220, 92);
+  transform-origin: bottom left;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar-collapse a {
+  display: inline-block;
+  position: relative;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-collapse a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(145, 220, 92);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.navbar-collapse a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
