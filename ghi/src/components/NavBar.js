@@ -85,7 +85,7 @@ export default function NavBar() {
         </Dropdown>
         <Navbar.Toggle />
       </div>
-      <Navbar.Collapse className="navbar-collapse pt-1.5 flex-row-reverse">
+      <Navbar.Collapse className="navbar-collapse pt-1 justify-content-center">
         {/* <Navbar.Link href="/" active={true}>
           Home
         </Navbar.Link> */}
