@@ -51,7 +51,7 @@ export default function LeaderBoard() {
 	return (
 		<>
 			<div
-				className="font-[Display] p-8 bg-beige"
+				className="p-8 bg-beige"
 				style={{
 					display: "flex",
 					justifyContent: "center",

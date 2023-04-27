@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import QuizResultPage from "./QuizResultPage";
 import { useDispatch } from "react-redux";
 import { incrementScore } from "../../store/quizgameSlice";
+import Timer from "../Timer";
+import { useSelector } from "react-redux";
 
 export default function QuestionSet(props) {
 	const [question, setQuestion] = useState([]);
@@ -14,6 +16,8 @@ export default function QuestionSet(props) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const dispatch = useDispatch();
+
+	const score = useSelector((state) => state.quizgame.score);
 
 	useEffect(() => {
 		const getQuizData = async () => {
@@ -94,46 +98,69 @@ export default function QuestionSet(props) {
 	let shuffledNumbers = shuffle(numbers);
 
 	return isLoading ? (
-		<div>Loading...</div>
+		<div className="text-center mx-auto">Loading...</div>
 	) : currentQuestion <= 9 ? (
 		<>
-			<div className="container">
-				<div className="text-xl">{question[currentQuestion]}</div>
+			<div className="grid">
+				<div className="text-2xl text-center">
+					Question: {currentQuestion + 1}/10
+				</div>
+				<div className="inline-flex text-lg">
+					Timer:{" "}
+					<Timer
+						isEndOfGame={props.isEndOfGame}
+						setIsEndOfGame={props.setIsEndOfGame}
+						isStarted={props.isStarted}
+					/>
+				</div>
+				<div className="text-lg">Score: {score}</div>
+				<div className="text-lg">Category: {category[currentQuestion]}</div>
+				<div className="text-lg">Difficulty: {difficulty[currentQuestion]}</div>
+				<div className="text-lightblue pt-6 pb-6 text-center text-3xl">
+					{question[currentQuestion]}
+				</div>
+				<div className="pb-5 text-lg text-center">
+					{currentQuestion > 0 &&
+						(isCorrect ? (
+							<p style={{ color: "green" }}>Correct!</p>
+						) : (
+							<p style={{ color: "red" }}>Incorrect!</p>
+						))}
+				</div>
+
 				<button
-					className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+					className="text-center text-white bg-darkerhoverpink hover:bg-hoverpink focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
 					onClick={handleCorrectAnswer}
 					value={answers[currentQuestion]?.[shuffledNumbers[0]]}>
 					{answers[currentQuestion]?.[shuffledNumbers[0]]}
 				</button>
 				<button
-					className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+					className="text-center text-white bg-darkerhoverpink hover:bg-hoverpink focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
 					onClick={handleCorrectAnswer}
 					value={answers[currentQuestion]?.[shuffledNumbers[1]]}>
 					{answers[currentQuestion]?.[shuffledNumbers[1]]}
 				</button>
 				<button
-					className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+					className="text-center text-white bg-darkerhoverpink hover:bg-hoverpink focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
 					onClick={handleCorrectAnswer}
 					value={answers[currentQuestion]?.[shuffledNumbers[2]]}>
 					{answers[currentQuestion]?.[shuffledNumbers[2]]}
 				</button>
 				<button
-					className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+					className="text-center text-white bg-darkerhoverpink hover:bg-hoverpink focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
 					onClick={handleCorrectAnswer}
 					value={answers[currentQuestion]?.[shuffledNumbers[3]]}>
 					{answers[currentQuestion]?.[shuffledNumbers[3]]}
 				</button>
-				<div>
-					{currentQuestion > 0 &&
-						(isCorrect ? <p>Correct!</p> : <p>Incorrect!</p>)}
-				</div>
-				<div>Category: {category[currentQuestion]}</div>
-				<div>Difficulty: {difficulty[currentQuestion]}</div>
 			</div>
 		</>
 	) : (
 		<>
-			<QuizResultPage />
+			<QuizResultPage
+				restartGame={props.restartGame}
+				setIsStarted={props.setIsStarted}
+				setIsEndOfGame={props.isEndOfGame}
+			/>
 		</>
 	);
 }
