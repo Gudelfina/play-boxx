@@ -34,6 +34,15 @@ class ScoreOutWithUserAndGame(BaseModel):
     game_id: GameOut
 
 
+class ScoreOutBasedOnGame(BaseModel):
+    id: int
+    score: int
+    played_on: datetime
+    time_completed: str
+    player_id: UserOut
+    game_id: GameOut
+
+
 class ScoreRepository:
     def create_score(self, score: ScoreIn) -> Union[ScoreOut, Error]:
         try:
@@ -130,3 +139,57 @@ class ScoreRepository:
         except Exception as e:
             print(e)
             return {"message": "could not delete score"}
+
+    def game_score(self, game_id: int):
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT
+                            s.id,
+                            s.score,
+                            s.played_on,
+                            s.time_completed,
+                            u.id,
+                            u.first_name,
+                            u.last_name,
+                            u.username,
+                            u.email,
+                            u.profile_picture,
+                            g.*
+                        FROM scores s
+                        INNER JOIN users u ON s.player_id = u.id
+                        INNER JOIN games g ON s.game_id = g.id
+                        WHERE g.id = %s
+                        ORDER BY s.score DESC, CAST(s.time_completed as int)
+                        """,
+                        [game_id],)
+                    result = []
+                    for record in db:
+                        player_dict = {
+                            "id": record[4],
+                            "first_name": record[5],
+                            "last_name": record[6],
+                            "username": record[7],
+                            "email": record[8],
+                            "profile_picture": record[9],
+                        }
+                        game_dict = {
+                            "id": record[10],
+                            "name": record[11],
+                            "description": record[12],
+                            "picture_url": record[13],
+                        }
+                        score = ScoreOutBasedOnGame(
+                            id=record[0],
+                            score=record[1],
+                            played_on=record[2],
+                            time_completed=record[3],
+                            player_id=player_dict,
+                            game_id=game_dict,
+                        )
+                        result.append(score)
+                    return result
+        except Exception:
+            return {"message": "Could not retrieve game score"}

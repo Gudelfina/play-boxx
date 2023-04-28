@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "flowbite/dist/flowbite.min.css";
 import "./LoginForm.css";
-import arcadeMachine from "../images/arcade-machine.png";
+import arcadeMachine from "../images/arcade-machine.svg";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export default function LoginForm() {

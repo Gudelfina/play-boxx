@@ -17,10 +17,11 @@
 }
 
 .wrap {
-  background-image: url("../images/gamepage-bg-1.jpg");
+  background-image: url("../images/gamepage-bg.svg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 100% 100%;
+
+  background-size: cover;
 }
 
 .result-header {
@@ -78,4 +79,12 @@
 .navbar-collapse a:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+.leaderboard {
+  background-color: #fcf4e4;
+  height: 500px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }

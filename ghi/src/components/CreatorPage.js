@@ -1,9 +1,9 @@
 import React from "react";
-import panda from "../images/panda.png";
-import bear from "../images/bear.png";
-import elephant from "../images/elephant.png";
-import banner from "../images/creator-page-banner.png";
-import penguin from "../images/penguin.png";
+import panda from "../images/panda.svg";
+import bear from "../images/bear.svg";
+import cat from "../images/cat.svg";
+import banner from "../images/creator-page-banner.svg";
+import penguin from "../images/penguin.svg";
 
 export default function CreatorPage() {
   return (
@@ -74,8 +74,8 @@ export default function CreatorPage() {
           <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
             <img
               className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-90 md:rounded-none md:rounded-l-lg"
-              src={elephant}
-              alt="a cartoon elephant with flowers and a bird"
+              src={cat}
+              alt="a cartoot cat with flowers and a bird"
             />
             <div className="flex flex-col justify-between p-4 leading-normal">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

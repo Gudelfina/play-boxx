@@ -8,6 +8,7 @@ from queries.scores import (
     ScoreRepository,
     Error,
     ScoreOutWithUserAndGame,
+    ScoreOutBasedOnGame
 )
 from typing import List, Union
 from authenticator import authenticator
@@ -37,3 +38,8 @@ def delete_score(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete_score(score_id)
+
+
+@router.get("/scores/{game_id}", response_model=List[ScoreOutBasedOnGame])
+def get_score_by_game(game_id: int, repo: ScoreRepository = Depends()):
+    return repo.game_score(game_id)
