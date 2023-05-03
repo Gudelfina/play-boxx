@@ -17,6 +17,7 @@ PlayBoxx is a web application designed as an alternative to flash-based gaming s
 - [API design](docs/apis.md)
 - [Data model](docs/data-models.md)
 - [Wireframes](docs/wireframes.md)
+- [Credits](docs/credits.md)
 
 ## Functionality
 
