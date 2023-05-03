@@ -16,51 +16,51 @@ import { ToastContainer } from "react-toastify";
 import { persistor } from "./store/store";
 
 export default function App() {
-  const domain = /https:\/\/[^/]+/;
-  const basename = process.env.PUBLIC_URL.replace(domain, "");
+	const domain = /https:\/\/[^/]+/;
+	const basename = process.env.PUBLIC_URL.replace(domain, "");
 
-  return (
-    <BrowserRouter basename={basename}>
-      <PersistGate persistor={persistor}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<LandingPage />}></Route>
-          <Route path="/login" element={<LoginForm />}></Route>
-          <Route path="/signup" element={<SignUpForm />}></Route>
-          <Route path="/leaderboard" element={<LeaderBoard />}></Route>
-          <Route path="/games" element={<GamePage />}></Route>
-          <Route path="/games/quiz" element={<StartPage />}></Route>
-          <Route path="/creators" element={<CreatorPage />}></Route>
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <ProfilePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile/edit"
-            element={
-              <ProtectedRoute>
-                <EditProfilePage />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </PersistGate>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter basename={basename}>
+			<PersistGate persistor={persistor}>
+				<NavBar />
+				<Routes>
+					<Route path="/" element={<LandingPage />}></Route>
+					<Route path="/login" element={<LoginForm />}></Route>
+					<Route path="/signup" element={<SignUpForm />}></Route>
+					<Route path="/leaderboard" element={<LeaderBoard />}></Route>
+					<Route path="/games" element={<GamePage />}></Route>
+					<Route path="/games/quiz" element={<StartPage />}></Route>
+					<Route path="/creators" element={<CreatorPage />}></Route>
+					<Route
+						path="/profile"
+						element={
+							<ProtectedRoute>
+								<ProfilePage />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path="/profile/edit"
+						element={
+							<ProtectedRoute>
+								<EditProfilePage />
+							</ProtectedRoute>
+						}
+					/>
+				</Routes>
+				<ToastContainer
+					position="bottom-right"
+					autoClose={5000}
+					hideProgressBar={false}
+					newestOnTop
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="light"
+				/>
+			</PersistGate>
+		</BrowserRouter>
+	);
 }
