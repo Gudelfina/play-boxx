@@ -99,7 +99,7 @@ export default function CreatorPage() {
             <img
               className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-90 md:rounded-none md:rounded-l-lg"
               src={cat}
-              alt="a cartoon cat with flowers and a bird"
+              alt="a cartoon kitten eating a bowl of noodles"
             />
             <div className="flex flex-col justify-between p-4 leading-normal">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -109,7 +109,15 @@ export default function CreatorPage() {
                 Gudelfina Mendez
               </h5>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the links to my socials and other projects:
+                From saving lives to coding lines, this registered nurse is
+                swapping out stethoscopes for laptops and diving headfirst into
+                the exciting world of software engineering! Dedicated and
+                supportive team member, my passion is to develop feature-packed,
+                user centered apps.
+              </p>
+              <p className="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
+                <span className="font-semibold">Hobbies/Interests:</span> <br />
+                - Crochet <br />- Playing Guitar <br />- Art
               </p>
               <div className="mt-3 space-x-4 flex p-1">
                 <div className="p-1 border-4 rounded-full cursor-pointer hover:border-yellow-200 hover:scale-105 transition transform duration-200">
@@ -141,7 +149,7 @@ export default function CreatorPage() {
                 </div>
                 <div className="p-1 border-4 rounded-full cursor-pointer hover:border-yellow-200 hover:scale-105 transition transform duration-200">
                   {/* replace youremailhere with email */}
-                  <a href="mailto:youremailhere">
+                  <a href="mailto:gudelfina.mendez@gmail.com">
                     <img
                       className="block h-6 w-6 rounded-full"
                       alt="Email icon"
@@ -241,7 +249,6 @@ export default function CreatorPage() {
             </div>
           </div>
         </div>
-
         {/* Rodrigo's Card */}
         <div className="creator-card mx-auto">
           <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
