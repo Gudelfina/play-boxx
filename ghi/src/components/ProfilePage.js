@@ -59,7 +59,7 @@ export const ProfilePage = () => {
 				)}
 				<div className="flex justify-center mt-5">
 					<button
-						className="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+						className="focus:outline-none text-white bg-navy hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full pt-4 px-5 py-2.5 text-center sm:w-auto"
 						onClick={() => navigate("/profile/edit")}>
 						Edit
 					</button>
@@ -74,7 +74,7 @@ export const ProfilePage = () => {
 				<div className="text-center text-2xl font-bold mb-2">
 					Top 10 Personal Leaderboard
 				</div>
-				<div className="relative overflow-x-auto sm:rounded-lg">
+				<div className="pb-48 relative overflow-x-auto sm:rounded-lg">
 					<table className="w-1/2 text-sm text-left text-gray-500 mx-auto dark:text-gray-400">
 						<thead className="text-xs text-gray-700 uppercase bg-lightpink dark:bg-gray-700 dark:text-gray-400">
 							<tr>
