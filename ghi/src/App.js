@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import { persistor } from "./store/store";
+import Footer from "./components/Footer";
 
 export default function App() {
 	const domain = /https:\/\/[^/]+/;
@@ -49,6 +50,7 @@ export default function App() {
 					/>
 				</Routes>
 				<ToastContainer
+					className="toast-position"
 					position="bottom-right"
 					autoClose={5000}
 					hideProgressBar={false}
@@ -60,6 +62,7 @@ export default function App() {
 					pauseOnHover
 					theme="light"
 				/>
+				<Footer />
 			</PersistGate>
 		</BrowserRouter>
 	);
