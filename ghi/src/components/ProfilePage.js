@@ -78,22 +78,22 @@ export const ProfilePage = () => {
 					<table className="w-1/2 text-sm text-left text-gray-500 mx-auto dark:text-gray-400">
 						<thead className="text-xs text-gray-700 uppercase bg-lightpink dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th scope="col" className="px-6 py-3">
+								<th scope="col" className="text-center px-6 py-3">
 									Ranking
 								</th>
-								<th scope="col" className="px-6 py-3">
+								<th scope="col" className="text-center px-6 py-3">
 									Game
 								</th>
-								<th scope="col" className="px-6 py-3">
+								<th scope="col" className="text-center px-6 py-3">
 									Score
 								</th>
-								<th scope="col" className="px-6 py-3">
-									Time Completed (mm:ss:ms)
+								<th scope="col" className="text-center px-6 py-3">
+									Time Completed
 								</th>
-								<th scope="col" className="px-6 py-3">
+								<th scope="col" className="text-center px-6 py-3">
 									Date Played
 								</th>
-								<th scope="col" className="px-6 py-3">
+								<th scope="col" className="text-center px-6 py-3">
 									Action
 								</th>
 							</tr>
@@ -104,14 +104,18 @@ export const ProfilePage = () => {
 									<tr
 										className="bg-lighterpink border-b hover:bg-lightpink dark:bg-gray-900 dark:border-gray-700"
 										key={score.id}>
-										<td className="px-6 py-4">{index + 1}</td>
-										<td className="px-6 py-4">{score.game_id.name}</td>
-										<td className="px-6 py-4">{score.score}</td>
-										<td className="px-6 py-4">
+										<td className="text-center px-6 py-4">{index + 1}</td>
+										<td className="text-center px-6 py-4">
+											{score.game_id.name}
+										</td>
+										<td className="text-center px-6 py-4">{score.score}</td>
+										<td className="text-center px-6 py-4">
 											{formatTime(score.time_completed)}
 										</td>
-										<td className="px-6 py-4">{formatDate(score.played_on)}</td>
-										<td className="px-6 py-4">
+										<td className="text-center px-6 py-4">
+											{formatDate(score.played_on)}
+										</td>
+										<td className="text-center px-6 py-4">
 											<DeleteModal
 												isDeleted={isDeleted}
 												setIsDeleted={setIsDeleted}
