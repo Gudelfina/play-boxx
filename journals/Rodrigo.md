@@ -1,3 +1,21 @@
+April 27, 2023
+Today I worked on:
+
+- pivoting to studying for the upcoming exam since the team has present already
+
+## Ah-ha!
+
+April 27, 2023
+Today I worked on:
+
+- presenting the project early with the team
+  - need another merge request with a fetch
+- created a game selector dropdown on the leaderboard to meet the fetch requirement
+
+Ah-ha!
+
+- team filter through the back-end
+
 April 26, 2023
 Today I worked on:
 
